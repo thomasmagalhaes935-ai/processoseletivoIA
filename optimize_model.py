@@ -10,7 +10,7 @@ def main():
 
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
 
-    # Otimização (Dynamic Range Quantization)
+    # Otimização 
     converter.optimizations = [tf.lite.Optimize.DEFAULT]
 
     tflite_model = converter.convert()

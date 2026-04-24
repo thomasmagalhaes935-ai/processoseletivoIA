@@ -311,43 +311,51 @@ Preencha todas as seções de forma clara e objetiva.
 
 **Exemplo:**
 
-👤 Identificação: **Nome Completo:**
-
+👤 Identificação: Thomas de sousa Magalhães 
 
 ### 1️⃣ Resumo da Arquitetura do Modelo
 
-Descreva, em palavras, a arquitetura da **CNN** implementada no arquivo
-`train_model.py`.
+A arquitetura é composta por duas camadas convolucionais (Conv2D), responsáveis por extrair características das imagens, seguidas por camadas de MaxPooling para redução dimensional.
+
+Após a extração de características, os dados são achatados (Flatten) e enviados para camadas densas (Dense), responsáveis pela classificação final.
+
+Também foi utilizada uma camada de Dropout para reduzir overfitting.
+A saída do modelo é feita com uma camada Dense com função de ativação softmax, classificando os dígitos de 0 a 9.
 
 
 
 ### 2️⃣ Bibliotecas Utilizadas
 
-Liste as principais bibliotecas utilizadas no projeto, preferencialmente
-com suas versões.
+- TensorFlow / Keras
+- NumPy (internamente pelo TensorFlow)
+- time (para medição do tempo de treinamento)
+- os (para manipulação de arquivos no processo de otimização)
 
 
 
 ### 3️⃣ Técnica de Otimização do Modelo
 
-Explique qual técnica foi utilizada para otimizar o modelo no arquivo
-`optimize_model.py`.
+Foi utilizada a técnica de Dynamic Range Quantization, aplicada através do TensorFlow Lite Converter.
+
+Essa técnica reduz o tamanho do modelo convertendo os pesos de ponto flutuante para formatos mais leves, mantendo um bom nível de desempenho.
+
+A conversão foi realizada utilizando o TFLiteConverter, gerando um modelo final no formato .tflite, adequado para execução em dispositivos embarcados.
 
 
 
 ### 4️⃣ Resultados Obtidos
 
-Informe o principal resultado obtido após o treinamento do modelo.
+O modelo apresentou uma acurácia aproximada de 99% no conjunto de teste do MNIST após 5 épocas de treinamento.
 
 
 
 ### 5️⃣ Comentários Adicionais (Opcional)
 
-Utilize este espaço para comentar:
-- Dificuldades encontradas  
-- Decisões técnicas importantes  
-- Limitações do modelo  
-- Aprendizados durante o desafio
+Durante o desenvolvimento, houve dificuldades relacionadas à compatibilidade de versões do TensorFlow/Keras entre o ambiente local e o GitHub Actions, além de problemas com nomes de arquivos exigidos pelo pipeline de validação.
+
+Foi necessário ajustar o salvamento e carregamento do modelo para garantir compatibilidade com o CI. 
+
+Sendo necessário que o repositório fosse refeito para organizar melhor todas as mudanças no código. 
 
 
 ## 🆘 Suporte
